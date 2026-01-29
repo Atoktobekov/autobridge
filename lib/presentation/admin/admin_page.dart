@@ -9,7 +9,7 @@ class AdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final carRepository = AppScope.of(context).dependencies.carRepository;
+    final carRepository = AppScope.of(context).carRepository;
     return Scaffold(
       appBar: AppBar(title: const Text('Админка')),
       floatingActionButton: FloatingActionButton(
@@ -127,7 +127,8 @@ class _CarFormDialogState extends State<CarFormDialog> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    final carRepository = AppScope.of(context).dependencies.carRepository;
+    final carRepository = AppScope.of(context).carRepository;
+
     final car = Car(
       id: widget.existing?.id ?? '',
       brand: _brandController.text.trim(),

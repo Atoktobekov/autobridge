@@ -34,7 +34,7 @@ class _AuthPageState extends State<AuthPage> {
       _error = null;
     });
     try {
-      final authRepository = AppScope.of(context).dependencies.authRepository;
+      final authRepository = AppScope.of(context).authRepository;
       if (_isLogin) {
         await authRepository.signIn(
           _emailController.text.trim(),

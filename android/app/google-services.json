@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "667329298626",
+    "project_id": "autobridge-de1fc",
+    "storage_bucket": "autobridge-de1fc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667329298626:android:1c137a347d08145358fb5b",
+        "android_client_info": {
+          "package_name": "com.karfagen.autobridge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD29b2zorver3Jl0wetHOOjKu57X9ZBXos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import '../../domain/entities/user_settings.dart';
 import '../../domain/repositories/settings_repository.dart';

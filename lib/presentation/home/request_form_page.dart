@@ -47,7 +47,7 @@ class _RequestFormPageState extends State<RequestFormPage> {
       budget: _budgetController.text.trim(),
       comment: _commentController.text.trim(),
     );
-    await AppScope.of(context).dependencies.requestRepository.submitRequest(request);
+    await AppScope.of(context).requestRepository.submitRequest(request);
     if (mounted) {
       Navigator.of(context).pop();
     }

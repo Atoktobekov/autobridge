@@ -58,3 +58,7 @@ ios/Flutter/Flutter.podspec
 /windows/flutter/ephemeral/
 
 
+# Firebase
+/lib/firebase_options.dart
+
+

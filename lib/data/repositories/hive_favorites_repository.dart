@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import '../../domain/entities/favorite_car.dart';
 import '../../domain/repositories/favorites_repository.dart';
