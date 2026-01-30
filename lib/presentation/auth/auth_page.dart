@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
+import 'package:autobridge/domain/repositories/auth_repository.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -34,7 +35,7 @@ class _AuthPageState extends State<AuthPage> {
       _error = null;
     });
     try {
-      final authRepository = AppScope.of(context).authRepository;
+      final authRepository = getIt<AuthRepository>();
       if (_isLogin) {
         await authRepository.signIn(
           _emailController.text.trim(),

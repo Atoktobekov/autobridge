@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/car.dart';
 import 'package:autobridge/domain/entities/favorite_car.dart';
+import 'package:autobridge/domain/repositories/car_repository.dart';
+import 'package:autobridge/domain/repositories/favorites_repository.dart';
 import 'package:autobridge/presentation/widgets/car_card.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -12,9 +14,8 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dependencies = AppScope.of(context);
-    final favoritesRepository = dependencies.favoritesRepository;
-    final carRepository = dependencies.carRepository;
+    final favoritesRepository = getIt<FavoritesRepository>();
+    final carRepository = getIt<CarRepository>();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Избранное')),

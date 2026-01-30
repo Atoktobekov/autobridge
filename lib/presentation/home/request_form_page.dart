@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/contact_request.dart';
+import 'package:autobridge/domain/repositories/request_repository.dart';
 
 class RequestFormPage extends StatefulWidget {
   const RequestFormPage({super.key});
@@ -47,7 +48,7 @@ class _RequestFormPageState extends State<RequestFormPage> {
       budget: _budgetController.text.trim(),
       comment: _commentController.text.trim(),
     );
-    await AppScope.of(context).requestRepository.submitRequest(request);
+    await getIt<RequestRepository>().submitRequest(request);
     if (mounted) {
       Navigator.of(context).pop();
     }

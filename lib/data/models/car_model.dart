@@ -19,14 +19,14 @@ class CarModel extends Car {
     final data = doc.data() ?? {};
     return CarModel(
       id: doc.id,
-      brand: data['brand'] as String? ?? '',
-      model: data['model'] as String? ?? '',
+      brand: _stringFrom(data['brand']),
+      model: _stringFrom(data['model']),
       year: (data['year'] as num?)?.toInt() ?? 0,
       mileage: (data['mileage'] as num?)?.toInt() ?? 0,
       priceUsd: (data['priceUsd'] as num?)?.toDouble() ?? 0,
       priceKgs: (data['priceKgs'] as num?)?.toDouble() ?? 0,
-      imageUrl: data['imageUrl'] as String? ?? '',
-      status: data['status'] as String? ?? 'inStock',
+      imageUrl: _stringFrom(data['imageUrl']),
+      status: _stringFrom(data['status'], fallback: 'inStock'),
     );
   }
 
@@ -42,5 +42,18 @@ class CarModel extends Car {
       'status': status,
       'updatedAt': FieldValue.serverTimestamp(),
     };
+  }
+
+  static String _stringFrom(dynamic value, {String fallback = ''}) {
+    if (value is String) {
+      return value;
+    }
+    if (value is List && value.isNotEmpty) {
+      final first = value.first;
+      if (first is String) {
+        return first;
+      }
+    }
+    return fallback;
   }
 }

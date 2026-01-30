@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/user_profile.dart';
 import 'package:autobridge/domain/entities/user_settings.dart';
+import 'package:autobridge/domain/repositories/auth_repository.dart';
+import 'package:autobridge/domain/repositories/settings_repository.dart';
+import 'package:autobridge/domain/repositories/user_repository.dart';
 import 'package:autobridge/presentation/admin/admin_page.dart';
 import 'package:autobridge/presentation/home/request_form_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -14,10 +17,10 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dependencies = AppScope.of(context);
-    final authRepository = dependencies.authRepository;
-    final userRepository = dependencies.userRepository;
-    final settingsRepository = dependencies.settingsRepository;
+    final authRepository = getIt<AuthRepository>();
+    final userRepository = getIt<UserRepository>();
+    final settingsRepository = getIt<SettingsRepository>();
+    final talker = getIt<Talker>();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Профиль')),
@@ -129,7 +132,7 @@ class ProfilePage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (_) => TalkerScreen(talker: dependencies.talker),
+                  builder: (_) => TalkerScreen(talker: talker),
                 ),
               );
             },
