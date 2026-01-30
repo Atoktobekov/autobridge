@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:autobridge/app/app_scope.dart';
@@ -73,6 +75,11 @@ class _HomePageState extends State<HomePage> {
                 }).toList();
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.hasError) {
+                  // Можно вывести сообщение об ошибке для отладки
+                  log(snapshot.error.toString());
+                  return const Center(child: Text('Произошла ошибка при загрузке данных'));
                 }
                 if (filtered.isEmpty) {
                   return const Center(child: Text('Пока нет доступных машин'));
