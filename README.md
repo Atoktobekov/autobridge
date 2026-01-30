@@ -1,16 +1,83 @@
 # autobridge
 
-App for car service company
+Демо-приложение для компании по подбору и привозу авто из Южной Кореи.
 
-## Getting Started
+## Архитектура (Clean Architecture)
 
-This project is a starting point for a Flutter application.
+```
+lib/
+  app/                # инициализация, DI, приложение
+  core/               # базовые вещи (инициализация Firebase)
+  data/               # реализации репозиториев и модели
+  domain/             # сущности и контракты репозиториев
+  presentation/       # UI-слой (страницы и виджеты)
+  services/           # сервисные утилиты (Hive box names)
+```
 
-A few resources to get you started if this is your first Flutter project:
+**Поток данных:** UI → Repository (domain) → Data (Firestore/Hive) → Domain entities.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Firebase: подключение
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Создайте Firebase проект.
+2. Подключите нужные сервисы: **Auth**, **Firestore**, **Storage** (по необходимости).
+3. Выполните:
+
+```bash
+flutter pub add firebase_core firebase_auth cloud_firestore
+dart pub global activate flutterfire_cli
+flutterfire configure
+```
+
+4. После `flutterfire configure` появится `firebase_options.dart`.  
+   Обновите `lib/core/firebase/firebase_initializer.dart`, если нужно.
+
+## Логи и HTTP
+
+- Для HTTP используется **Dio** с логированием через **talker_dio_logger**.
+- Глобальные логи доступны через **Talker** (navigator observer подключён в приложении).
+- Если нужен webhook для заявок, задайте `AppConfig.requestWebhookUrl`.
+
+## Минимальные коллекции Firestore
+
+**cars**
+```
+brand: string
+model: string
+year: number
+mileage: number
+priceUsd: number
+priceKgs: number
+imageUrl: string
+status: "inStock" | "customOrder"
+updatedAt: timestamp
+```
+
+**users**
+```
+email: string
+role: "admin" | "user"
+updatedAt: timestamp
+```
+
+**requests**
+```
+fullName: string
+phone: string
+comment: string
+budget: string
+preferredBrand: string
+preferredModel: string
+createdAt: timestamp
+```
+
+## Hive (локальное хранение)
+
+Используется для:
+- избранных автомобилей;
+- настроек пользователя (валюта и язык).
+
+## Экранная структура
+
+- **Главная**: список авто + поиск + кнопка «Связаться».
+- **Избранное**: список избранных авто (Hive).
+- **Профиль**: настройки + вход/выход + админка для редактирования авто.
