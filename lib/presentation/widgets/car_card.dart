@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/car.dart';
+import 'package:autobridge/domain/entities/car.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({

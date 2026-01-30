@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_scope.dart';
-import '../../domain/entities/contact_request.dart';
+import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/domain/entities/contact_request.dart';
 
 class RequestFormPage extends StatefulWidget {
   const RequestFormPage({super.key});

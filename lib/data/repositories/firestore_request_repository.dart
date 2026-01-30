@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/contact_request.dart';
-import '../../domain/repositories/request_repository.dart';
-import '../models/contact_request_model.dart';
+import 'package:autobridge/domain/entities/contact_request.dart';
+import 'package:autobridge/domain/repositories/request_repository.dart';
+import 'package:autobridge/data/models/contact_request_model.dart';
 
 class FirestoreRequestRepository implements RequestRepository {
   FirestoreRequestRepository({FirebaseFirestore? firestore})

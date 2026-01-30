@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/app_scope.dart';
-import '../../domain/entities/user_profile.dart';
-import '../../domain/repositories/user_repository.dart';
-import '../root/root_page.dart';
-import 'auth_page.dart';
+import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/domain/entities/user_profile.dart';
+import 'package:autobridge/domain/repositories/user_repository.dart';
+import 'package:autobridge/presentation/root/root_page.dart';
+import 'package:autobridge/presentation/auth/auth_page.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});

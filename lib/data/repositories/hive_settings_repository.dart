@@ -1,8 +1,8 @@
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
-import '../../domain/entities/user_settings.dart';
-import '../../domain/repositories/settings_repository.dart';
-import '../../services/hive_boxes.dart';
+import 'package:autobridge/domain/entities/user_settings.dart';
+import 'package:autobridge/domain/repositories/settings_repository.dart';
+import 'package:autobridge/services/hive_boxes.dart';
 
 class HiveSettingsRepository implements SettingsRepository {
   Box<UserSettings> get _box => Hive.box<UserSettings>(HiveBoxes.settings);

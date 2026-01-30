@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/user_profile.dart';
-import '../../domain/repositories/user_repository.dart';
-import '../models/user_profile_model.dart';
+import 'package:autobridge/domain/entities/user_profile.dart';
+import 'package:autobridge/domain/repositories/user_repository.dart';
+import 'package:autobridge/data/models/user_profile_model.dart';
 
 class FirestoreUserRepository implements UserRepository {
   FirestoreUserRepository({FirebaseFirestore? firestore})

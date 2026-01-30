@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/contact_request.dart';
+import 'package:autobridge/domain/entities/contact_request.dart';
 
 class ContactRequestModel extends ContactRequest {
   ContactRequestModel({

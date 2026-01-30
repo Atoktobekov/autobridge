@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../favorites/favorites_page.dart';
-import '../home/home_page.dart';
-import '../profile/profile_page.dart';
+import 'package:autobridge/presentation/favorites/favorites_page.dart';
+import 'package:autobridge/presentation/home/home_page.dart';
+import 'package:autobridge/presentation/profile/profile_page.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key, required this.userId});

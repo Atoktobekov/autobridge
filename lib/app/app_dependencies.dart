@@ -1,9 +1,9 @@
-import '../domain/repositories/auth_repository.dart';
-import '../domain/repositories/car_repository.dart';
-import '../domain/repositories/favorites_repository.dart';
-import '../domain/repositories/request_repository.dart';
-import '../domain/repositories/settings_repository.dart';
-import '../domain/repositories/user_repository.dart';
+import 'package:autobridge/domain/repositories/auth_repository.dart';
+import 'package:autobridge/domain/repositories/car_repository.dart';
+import 'package:autobridge/domain/repositories/favorites_repository.dart';
+import 'package:autobridge/domain/repositories/request_repository.dart';
+import 'package:autobridge/domain/repositories/settings_repository.dart';
+import 'package:autobridge/domain/repositories/user_repository.dart';
 
 class AppDependencies {
   AppDependencies({

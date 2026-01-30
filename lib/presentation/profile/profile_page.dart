@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_scope.dart';
-import '../../domain/entities/user_profile.dart';
-import '../../domain/entities/user_settings.dart';
-import '../admin/admin_page.dart';
-import '../home/request_form_page.dart';
+import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/domain/entities/user_profile.dart';
+import 'package:autobridge/domain/entities/user_settings.dart';
+import 'package:autobridge/presentation/admin/admin_page.dart';
+import 'package:autobridge/presentation/home/request_form_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key, required this.userId});

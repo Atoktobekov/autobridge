@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_scope.dart';
-import '../../domain/entities/car.dart';
-import '../../domain/entities/favorite_car.dart';
-import '../widgets/car_card.dart';
-import 'request_form_page.dart';
+import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/domain/entities/car.dart';
+import 'package:autobridge/domain/entities/favorite_car.dart';
+import 'package:autobridge/presentation/widgets/car_card.dart';
+import 'package:autobridge/presentation/home/request_form_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.userId});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_scope.dart';
-import '../../domain/entities/car.dart';
-import '../widgets/car_card.dart';
+import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/domain/entities/car.dart';
+import 'package:autobridge/presentation/widgets/car_card.dart';
 
 class AdminPage extends StatelessWidget {
   const AdminPage({super.key});

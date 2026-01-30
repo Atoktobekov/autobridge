@@ -1,4 +1,4 @@
-import '../entities/favorite_car.dart';
+import 'package:autobridge/domain/entities/favorite_car.dart';
 
 abstract class FavoritesRepository {
   Stream<List<FavoriteCar>> watchFavorites();

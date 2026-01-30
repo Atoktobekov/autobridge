@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../presentation/auth/auth_gate.dart';
+import 'package:autobridge/presentation/auth/auth_gate.dart';
 
 class AutobridgeApp extends StatelessWidget {
   const AutobridgeApp({super.key});

@@ -1,8 +1,8 @@
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
-import '../../domain/entities/favorite_car.dart';
-import '../../domain/repositories/favorites_repository.dart';
-import '../../services/hive_boxes.dart';
+import 'package:autobridge/domain/entities/favorite_car.dart';
+import 'package:autobridge/domain/repositories/favorites_repository.dart';
+import 'package:autobridge/services/hive_boxes.dart';
 
 class HiveFavoritesRepository implements FavoritesRepository {
   Box<FavoriteCar> get _box => Hive.box<FavoriteCar>(HiveBoxes.favorites);

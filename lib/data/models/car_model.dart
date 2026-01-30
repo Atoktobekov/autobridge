@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/car.dart';
+import 'package:autobridge/domain/entities/car.dart';
 
 class CarModel extends Car {
   CarModel({

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'app_dependencies.dart';
+import 'package:autobridge/app/app_dependencies.dart';
 
 class AppScope extends InheritedWidget {
   const AppScope({

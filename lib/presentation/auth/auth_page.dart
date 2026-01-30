@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_scope.dart';
+import 'package:autobridge/app/app_scope.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

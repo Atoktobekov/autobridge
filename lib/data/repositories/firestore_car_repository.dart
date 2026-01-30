@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../domain/entities/car.dart';
-import '../../domain/repositories/car_repository.dart';
-import '../models/car_model.dart';
+import 'package:autobridge/domain/entities/car.dart';
+import 'package:autobridge/domain/repositories/car_repository.dart';
+import 'package:autobridge/data/models/car_model.dart';
 
 class FirestoreCarRepository implements CarRepository {
   FirestoreCarRepository({FirebaseFirestore? firestore})
