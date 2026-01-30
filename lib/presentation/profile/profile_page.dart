@@ -5,6 +5,7 @@ import 'package:autobridge/domain/entities/user_profile.dart';
 import 'package:autobridge/domain/entities/user_settings.dart';
 import 'package:autobridge/presentation/admin/admin_page.dart';
 import 'package:autobridge/presentation/home/request_form_page.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key, required this.userId});
@@ -35,8 +36,14 @@ class ProfilePage extends StatelessWidget {
               }
               return ListTile(
                 leading: const Icon(Icons.person_outline),
-                title: Text(profile.email),
-                subtitle: Text(profile.isAdmin ? 'Администратор' : 'Пользователь'),
+                title: Text(
+                  profile.email,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  profile.isAdmin ? 'Администратор' : 'Пользователь',
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: profile.isAdmin
                     ? TextButton(
                         onPressed: () {
@@ -116,6 +123,18 @@ class ProfilePage extends StatelessWidget {
             },
             icon: const Icon(Icons.support_agent),
             label: const Text('Связаться с менеджером'),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => TalkerScreen(talker: dependencies.talker),
+                ),
+              );
+            },
+            icon: const Icon(Icons.bug_report_outlined),
+            label: const Text('Логи приложения'),
           ),
           const SizedBox(height: 12),
           OutlinedButton(

@@ -55,9 +55,15 @@ class CarCard extends StatelessWidget {
             Text(
               '${car.brand} ${car.model}',
               style: Theme.of(context).textTheme.titleMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 4),
-            Text('Год: ${car.year} • Пробег: ${car.mileage} км'),
+            Text(
+              'Год: ${car.year} • Пробег: ${car.mileage} км',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
             const SizedBox(height: 4),
             Text('Статус: ${car.status}'),
             const SizedBox(height: 8),
