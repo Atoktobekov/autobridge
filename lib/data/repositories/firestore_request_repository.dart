@@ -3,12 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:autobridge/domain/entities/contact_request.dart';
 import 'package:autobridge/domain/repositories/request_repository.dart';
 import 'package:autobridge/data/models/contact_request_model.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class FirestoreRequestRepository implements RequestRepository {
-  FirestoreRequestRepository({FirebaseFirestore? firestore})
-      : _collection = (firestore ?? FirebaseFirestore.instance).collection('requests');
+  FirestoreRequestRepository({FirebaseFirestore? firestore, Talker? talker})
+      : _collection = (firestore ?? FirebaseFirestore.instance).collection('requests'),
+        _talker = talker;
 
   final CollectionReference<Map<String, dynamic>> _collection;
+  final Talker? _talker;
 
   @override
   Future<void> submitRequest(ContactRequest request) async {
@@ -22,5 +25,6 @@ class FirestoreRequestRepository implements RequestRepository {
       preferredModel: request.preferredModel,
     );
     await _collection.add(model.toMap());
+    _talker?.info('Submitted contact request', {'name': request.fullName});
   }
 }
