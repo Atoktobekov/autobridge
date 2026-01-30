@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/presentation/auth/auth_gate.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
@@ -9,7 +9,7 @@ class AutobridgeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final talker = AppScope.of(context).talker;
+    final talker = getIt<Talker>();
     return MaterialApp(
       title: 'Autobridge',
       theme: ThemeData(

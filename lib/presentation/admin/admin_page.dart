@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/car.dart';
+import 'package:autobridge/domain/repositories/car_repository.dart';
+import 'package:autobridge/services/http_client.dart';
 import 'package:autobridge/presentation/widgets/car_card.dart';
 
 class AdminPage extends StatelessWidget {
@@ -9,7 +11,7 @@ class AdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final carRepository = AppScope.of(context).carRepository;
+    final carRepository = getIt<CarRepository>();
     return Scaffold(
       appBar: AppBar(title: const Text('Админка')),
       floatingActionButton: FloatingActionButton(
@@ -130,8 +132,8 @@ class _CarFormDialogState extends State<CarFormDialog> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    final dependencies = AppScope.of(context);
-    final carRepository = dependencies.carRepository;
+    final carRepository = getIt<CarRepository>();
+    final httpClient = getIt<AppHttpClient>();
 
     final car = Car(
       id: widget.existing?.id ?? '',
@@ -145,7 +147,7 @@ class _CarFormDialogState extends State<CarFormDialog> {
       status: _status,
     );
     if (car.imageUrl.isNotEmpty) {
-      await dependencies.httpClient.preflightUrl(car.imageUrl);
+      await httpClient.preflightUrl(car.imageUrl);
     }
     if (widget.existing == null) {
       await carRepository.addCar(car);

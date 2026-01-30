@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/car.dart';
 import 'package:autobridge/domain/entities/favorite_car.dart';
+import 'package:autobridge/domain/repositories/car_repository.dart';
+import 'package:autobridge/domain/repositories/favorites_repository.dart';
 import 'package:autobridge/presentation/widgets/car_card.dart';
 import 'package:autobridge/presentation/home/request_form_page.dart';
 
@@ -28,9 +30,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final dependencies = AppScope.of(context);
-    final carRepository = dependencies.carRepository;
-    final favoritesRepository = dependencies.favoritesRepository;
+    final carRepository = getIt<CarRepository>();
+    final favoritesRepository = getIt<FavoritesRepository>();
 
     return Scaffold(
       appBar: AppBar(
