@@ -10,15 +10,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get_it: ^7.7.0
 
 
   cupertino_icons: ^1.0.8
+  dio: ^5.9.0
   firebase_auth: ^6.1.4
   firebase_core: ^4.4.0
   cloud_firestore: ^6.1.2
   hive_ce_flutter: ^2.3.3
+  talker_dio_logger: ^5.0.0
+  talker_flutter: ^5.0.0
 
 dev_dependencies:
+  hive_ce_generator: ^1.10.0
+  build_runner:
   flutter_test:
     sdk: flutter
 
@@ -27,5 +33,3 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
-
-

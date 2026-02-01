@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/user_profile.dart';
+import 'package:autobridge/domain/repositories/auth_repository.dart';
 import 'package:autobridge/domain/repositories/user_repository.dart';
 import 'package:autobridge/presentation/root/root_page.dart';
 import 'package:autobridge/presentation/auth/auth_page.dart';
@@ -12,9 +13,8 @@ class AuthGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dependencies = AppScope.of(context);
-    final authRepository = dependencies.authRepository;
-    final userRepository = dependencies.userRepository;
+    final authRepository = getIt<AuthRepository>();
+    final userRepository = getIt<UserRepository>();
 
     return StreamBuilder<User?>(
       stream: authRepository.authStateChanges(),

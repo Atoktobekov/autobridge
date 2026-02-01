@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:autobridge/app/app_scope.dart';
+import 'package:autobridge/app/service_locator.dart';
 import 'package:autobridge/domain/entities/car.dart';
+import 'package:autobridge/domain/repositories/car_repository.dart';
+import 'package:autobridge/services/http_client.dart';
 import 'package:autobridge/presentation/widgets/car_card.dart';
 
 class AdminPage extends StatelessWidget {
@@ -9,7 +11,7 @@ class AdminPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final carRepository = AppScope.of(context).carRepository;
+    final carRepository = getIt<CarRepository>();
     return Scaffold(
       appBar: AppBar(title: const Text('Админка')),
       floatingActionButton: FloatingActionButton(
@@ -41,28 +43,31 @@ class AdminPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16, bottom: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton.icon(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (_) => CarFormDialog(existing: car),
-                            );
-                          },
-                          icon: const Icon(Icons.edit),
-                          label: const Text('Редактировать'),
-                        ),
-                        const SizedBox(width: 8),
-                        TextButton.icon(
-                          onPressed: () {
-                            carRepository.deleteCar(car.id);
-                          },
-                          icon: const Icon(Icons.delete_outline),
-                          label: const Text('Удалить'),
-                        ),
-                      ],
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        children: [
+                          TextButton.icon(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (_) => CarFormDialog(existing: car),
+                              );
+                            },
+                            icon: const Icon(Icons.edit),
+                            label: const Text('Редактировать'),
+                          ),
+                          TextButton.icon(
+                            onPressed: () {
+                              carRepository.deleteCar(car.id);
+                            },
+                            icon: const Icon(Icons.delete_outline),
+                            label: const Text('Удалить'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -127,7 +132,8 @@ class _CarFormDialogState extends State<CarFormDialog> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    final carRepository = AppScope.of(context).carRepository;
+    final carRepository = getIt<CarRepository>();
+    final httpClient = getIt<AppHttpClient>();
 
     final car = Car(
       id: widget.existing?.id ?? '',
@@ -140,6 +146,9 @@ class _CarFormDialogState extends State<CarFormDialog> {
       imageUrl: _imageUrlController.text.trim(),
       status: _status,
     );
+    if (car.imageUrl.isNotEmpty) {
+      await httpClient.preflightUrl(car.imageUrl);
+    }
     if (widget.existing == null) {
       await carRepository.addCar(car);
     } else {
