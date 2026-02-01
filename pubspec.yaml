@@ -23,6 +23,8 @@ dependencies:
   talker_flutter: ^5.0.0
 
 dev_dependencies:
+  hive_ce_generator: ^1.10.0
+  build_runner:
   flutter_test:
     sdk: flutter
 

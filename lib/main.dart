@@ -16,16 +16,20 @@ import 'package:autobridge/services/http_client.dart';
 import 'package:autobridge/services/hive_boxes.dart';
 
 Future<void> main() async {
+  /// Firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseInitializer.options,
   );
+
+  /// Hive
   await Hive.initFlutter();
   Hive.registerAdapter(FavoriteCarAdapter());
   Hive.registerAdapter(UserSettingsAdapter());
   await Hive.openBox<FavoriteCar>(HiveBoxes.favorites);
   await Hive.openBox<UserSettings>(HiveBoxes.settings);
 
+  /// Talker
   final talker = TalkerFlutter.init();
   FlutterError.onError = (details) {
     talker.handle(details.exception, details.stack);
@@ -36,6 +40,7 @@ Future<void> main() async {
     return true;
   };
 
+  /// Dio
   final dio = Dio()
     ..interceptors.add(
       TalkerDioLogger(
@@ -49,6 +54,8 @@ Future<void> main() async {
         ),
       ),
     );
+
+
   final httpClient = AppHttpClient(dio: dio, talker: talker);
 
   setupDependencies(talker: talker, dio: dio, httpClient: httpClient);
